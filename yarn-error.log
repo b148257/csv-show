@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/bao/.nvm/versions/node/v10.17.0/bin/node /usr/local/bin/yarn add @ant-design
+  /Users/bao/.nvm/versions/node/v10.17.0/bin/node /usr/local/bin/yarn add -D TerserPlugin OptimizeCSSAssetsPlugin
 
 PATH: 
   /Library/Java/JavaVirtualMachines/jdk14.0.1.jdk/Contents/Home/bin:/Users/bao/.nvm/versions/node/v10.17.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/Apple/usr/bin:/Library/Java/JavaVirtualMachines/jdk14.0.1.jdk/Contents/Home/bin:/Users/bao/.nvm/versions/node/v10.17.0/bin:.:.
@@ -14,8 +14,8 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/@ant-design: Request "https://registry.npm.taobao.org/@ant-design" returned a 405
-      at Request.params.callback [as _callback] (/Users/bao/.config/yarn/global/node_modules/yarn/lib/cli.js:66996:18)
+  Error: https://registry.npm.taobao.org/TerserPlugin: Not found
+      at Request.params.callback [as _callback] (/Users/bao/.config/yarn/global/node_modules/yarn/lib/cli.js:66987:18)
       at Request.self.callback (/Users/bao/.config/yarn/global/node_modules/yarn/lib/cli.js:140748:22)
       at Request.emit (events.js:198:13)
       at Request.<anonymous> (/Users/bao/.config/yarn/global/node_modules/yarn/lib/cli.js:141720:10)
@@ -33,15 +33,18 @@ npm manifest:
     "description": "",
     "main": "index.js",
     "scripts": {
-      "dev": "webpack-dev-server --config ./webpack.config.js"
+      "dev": "webpack-dev-server --config ./webpack.config.js",
+      "build": "webpack --config ./webpack.build.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
       "antd": "^4.7.2",
+      "jquery": "^3.5.1",
       "papaparse": "^5.3.0",
       "react": "^16.13.1",
       "react-dom": "^16.13.1",
+      "react-papaparse": "^3.9.0",
       "react-router": "^5.2.0",
       "react-router-dom": "^5.2.0"
     },
@@ -1929,6 +1932,13 @@ Lockfile:
     version "14.0.13"
     resolved "http://registry.npm.qima-inc.com/@types/node/download/@types/node-14.0.13.tgz#ee1128e881b874c371374c1f72201893616417c9"
     integrity sha1-7hEo6IG4dMNxN0wfciAYk2FkF8k=
+  
+  "@types/papaparse@^5.0.4":
+    version "5.2.4"
+    resolved "https://registry.npm.taobao.org/@types/papaparse/download/@types/papaparse-5.2.4.tgz#6aa662b08df84fd1dc34db37860005e9127457f3"
+    integrity sha1-aqZisI34T9HcNNs3hgAF6RJ0V/M=
+    dependencies:
+      "@types/node" "*"
   
   "@types/source-list-map@*":
     version "0.1.2"
@@ -5395,6 +5405,11 @@ Lockfile:
     resolved "http://registry.npm.qima-inc.com/isobject/download/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
     integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
   
+  jquery@^3.5.1:
+    version "3.5.1"
+    resolved "https://registry.npm.taobao.org/jquery/download/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
+    integrity sha1-17TQjhv9uGrS8aPQOeoXMEcXq7U=
+  
   "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
     version "4.0.0"
     resolved "http://registry.npm.qima-inc.com/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -6143,7 +6158,7 @@ Lockfile:
     resolved "http://registry.npm.qima-inc.com/pako/download/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
     integrity sha1-bJWZ00DVTf05RjgCUqNXBaa5kr8=
   
-  papaparse@^5.3.0:
+  papaparse@^5.2.0, papaparse@^5.3.0:
     version "5.3.0"
     resolved "https://registry.npm.taobao.org/papaparse/download/papaparse-5.3.0.tgz#ab1702feb96e79ab4309652f36db9536563ad05a"
     integrity sha1-qxcC/rlueatDCWUvNtuVNlY60Fo=
@@ -6932,6 +6947,14 @@ Lockfile:
     version "3.0.4"
     resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
     integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
+  
+  react-papaparse@^3.9.0:
+    version "3.9.0"
+    resolved "https://registry.npm.taobao.org/react-papaparse/download/react-papaparse-3.9.0.tgz#3709e9e7f358c339c7081110973bc4b057dcbf84"
+    integrity sha1-Nwnp5/NYwznHCBEQlzvEsFfcv4Q=
+    dependencies:
+      "@types/papaparse" "^5.0.4"
+      papaparse "^5.2.0"
   
   react-router-dom@^5.2.0:
     version "5.2.0"
