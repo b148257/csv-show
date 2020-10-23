@@ -6,7 +6,12 @@ const app = new Koa();
 
 const staticPath = '../dist';
 
-app.use(static(path.join(__dirname, staticPath)));
+app.use(
+  static(path.join(__dirname, staticPath), {
+    maxAge: 1000 * 60 * 60 * 24 * 365,
+    gzip: true,
+  }),
+);
 
 app.use(async (ctx) => {
   ctx.body = `<!DOCTYPE html>
@@ -23,6 +28,6 @@ app.use(async (ctx) => {
   `;
 });
 
-app.listen(3000, '0.0.0.0', () => {
+app.listen(80, '0.0.0.0', () => {
   console.log('listing: 3000');
 });
