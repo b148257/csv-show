@@ -39,6 +39,7 @@
   text-align: center;
   line-height: 22px;
   min-height: 30px;
+  word-break: keep-all;
 }
 
 .y-container {

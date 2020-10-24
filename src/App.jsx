@@ -179,7 +179,14 @@ export default class App extends Component {
         )}
 
         {!!rows.length && this.state.display && (
-          <Carousel effect="fade" autoplay autoplaySpeed={2000} pauseOnFocus={false} pauseOnHover={false}>
+          <Carousel
+            effect="fade"
+            autoplay
+            autoplaySpeed={2000}
+            pauseOnFocus={false}
+            pauseOnHover={false}
+            infinite={false}
+          >
             {rows.map((row) => {
               return (
                 <div className="display">
