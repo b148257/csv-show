@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Select, Carousel, Form, Row, Col, Button, Card } from 'antd';
 import { CSVReader } from 'react-papaparse';
+import _uniq from 'lodash/uniq';
 
 import './App.css';
 
@@ -113,7 +114,7 @@ export default class App extends Component {
               }}
             >
               <Row gutter={20}>
-                <Col span={7}>
+                <Col span={6}>
                   <FormItem
                     label="Uid"
                     rules={[
@@ -123,10 +124,14 @@ export default class App extends Component {
                       },
                     ]}
                   >
-                    <Input value={uid} onChange={(e) => this.setState({ uid: e.target.value })} />
+                    <Select value={uid} showSearch onChange={(v) => this.setState({ uid: v })}>
+                      {_uniq(this.state.uids).map((item) => (
+                        <Option key={item}>{item}</Option>
+                      ))}
+                    </Select>
                   </FormItem>
                 </Col>
-                <Col span={7}>
+                <Col span={6}>
                   <FormItem
                     label="visittime"
                     rules={[
@@ -147,7 +152,7 @@ export default class App extends Component {
                     </Select>
                   </FormItem>
                 </Col>
-                <Col span={7}>
+                <Col span={6}>
                   <FormItem label="label">
                     <Input value={label} />
                   </FormItem>
@@ -174,7 +179,7 @@ export default class App extends Component {
         )}
 
         {!!rows.length && this.state.display && (
-          <Carousel effect="fade" autoplay autoplaySpeed={2000}>
+          <Carousel effect="fade" autoplay autoplaySpeed={2000} pauseOnFocus={false} pauseOnHover={false}>
             {rows.map((row) => {
               return (
                 <div className="display">
@@ -185,14 +190,7 @@ export default class App extends Component {
                   </div>
                   <div className="right">
                     {row.slice(6).map((item, index) => this.renderItem(this.state.header[6 + index], item))}
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        width: '100%',
-                      }}
-                    >
+                    <div className="y-container">
                       y: <div className="y-value">{row[5]}</div>
                     </div>
                   </div>
