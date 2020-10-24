@@ -2,10 +2,27 @@ const Koa = require('koa');
 const path = require('path');
 const static = require('koa-static');
 const fs = require('fs');
+const compress = require('koa-compress');
 
 const app = new Koa();
 
 const staticPath = '../dist';
+
+app.use(
+  compress({
+    filter(content_type) {
+      return /javascript|text/i.test(content_type);
+    },
+    threshold: 2048,
+    gzip: {
+      flush: require('zlib').constants.Z_SYNC_FLUSH,
+    },
+    deflate: {
+      flush: require('zlib').constants.Z_SYNC_FLUSH,
+    },
+    br: false, // disable brotli
+  }),
+);
 
 app.use(
   static(path.join(__dirname, staticPath), {
