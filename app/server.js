@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const path = require('path');
 const static = require('koa-static');
+const fs = require('fs');
 
 const app = new Koa();
 
@@ -14,6 +15,9 @@ app.use(
 );
 
 app.use(async (ctx) => {
+  const files = fs.readdirSync(path.resolve(__dirname, '../dist'));
+  const main = files[0];
+
   ctx.body = `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -22,7 +26,7 @@ app.use(async (ctx) => {
     </head>
     <body>
       <div id="app"></div>
-      <script src="main.js"></script>
+      <script src="${main}"></script>
     </body>
   </html>
   `;
